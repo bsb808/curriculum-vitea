@@ -5,22 +5,27 @@ Version-controlled LaTeX source for my CV. Compiles locally and on
 
 ## Layout
 
+All CV sources live in the `cv/` directory:
+
 ```
-main.tex              Preamble, header, and \input of each section
-references.bib        All publications (BibTeX; rendered by biblatex/IEEE)
-sections/
-  personal.tex        Education, positions, honors and awards
-  teaching.tex        Courses taught
-  research.tex        Grants, publications (from .bib), expeditions
-  service.tex         Professional service
-cv/                   Original Word/PDF source (reference only)
+cv/
+  main.tex              Preamble, header, and \input of each section
+  references.bib        All publications (BibTeX; rendered by biblatex/IEEE)
+  sections/
+    personal.tex        Education, positions, honors and awards
+    teaching.tex        Courses taught
+    research.tex        Grants, publications (from .bib), expeditions
+    service.tex         Professional service
+  BinghamBrian_CV.2.1.docx / .pdf   Original Word source (reference only)
 ```
 
 ## Building
 
-Requires a TeX distribution with `biber` (TeX Live 2020+ / MacTeX).
+Requires a TeX distribution with `biber` (TeX Live 2020+ / MacTeX). Build from the
+`cv/` directory so the relative `\input` paths resolve:
 
 ```bash
+cd cv
 latexmk -pdf main.tex      # runs pdflatex + biber as needed -> main.pdf
 latexmk -C                 # clean build artifacts
 ```
@@ -38,8 +43,9 @@ renumbering or reordering.
 
 ## Syncing with Overleaf
 
-The repository root holds `main.tex`, so the whole repo maps directly to an Overleaf
-project. In the Overleaf project, set the **main document** to `main.tex`. Choose one:
+The whole repo maps directly to an Overleaf project. In the Overleaf project, set the
+**main document** to `cv/main.tex` (Overleaf compiles from that file's directory, so the
+relative `\input` and `\addbibresource` paths resolve). Choose one:
 
 1. **GitHub integration** — In Overleaf: *Menu → GitHub → Link to GitHub repository*.
    Push/pull from either side to sync. (Requires an Overleaf paid plan.)
